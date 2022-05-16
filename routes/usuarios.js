@@ -18,6 +18,11 @@ router.get('/', usuariosGet)
     
     check('correo',"el correo no es valido").isEmail(),
     check('correo').custom(emailExiste),
+    check('cedula',"la cedula es obligaria").notEmpty(),
+    check('cedula',"no es una cedula valida").isNumeric().not(),
+    check('apto',"el apartamento es obligatorio").notEmpty(),
+    check("numero","el numero de telefono es obligtorio").notEmpty(),
+    check("numero","el numero de telefono no es valido ").isNumeric().not(),
     //check('rol',"NO es un rol valido ").isIn(['ADMIN_ROLE','USER_ROLE']),
     check('rol').custom(esRolValido),
     validarCampos
@@ -33,7 +38,7 @@ router.get('/', usuariosGet)
   router.delete('/:id',[
     validarJWT,
    // esAdminRole,
-   tieneRole('ADMIN_ROLE'),
+    tieneRole('ADMIN_ROLE'),
     check('id','no es un id valido').isMongoId(),
     check('id').custom(existeUsuarioPorId),
     validarCampos

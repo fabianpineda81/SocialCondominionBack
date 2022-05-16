@@ -24,14 +24,14 @@ const usuariosGet=async(req, res=response) =>{
 
    
 
-    const {nombre,correo, password, rol}= req.body
-    const usuario= new Usuario({nombre,correo,password,rol});
+    const {nombre,correo, password, rol,apto,cedula,numero}= req.body
+    const usuario= new Usuario({nombre,correo,password,rol,apto,cedula,numero});
     // verificar si el correo existe 
    
 
     // encriptar la contraseña 
     const salt = bcryptjs.genSaltSync();
-    usuario .password= bcryptjs.hashSync(password,salt);
+    usuario.password= bcryptjs.hashSync(password,salt);
     // guardar en base de datos 
     await usuario.save();
   
@@ -63,7 +63,7 @@ const usuariosGet=async(req, res=response) =>{
     const usuario = await Usuario.findByIdAndUpdate(id,{estado:false})
     
 
-    res.json({usuario,usuarioAutenticado})
+   return res.json({usuario,usuarioAutenticado})
   }
 
   module.exports={

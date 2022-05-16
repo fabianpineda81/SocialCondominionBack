@@ -43,8 +43,8 @@ try {
 
     next()
 } catch (error) {
-    console.log(error)
-    res.status(401).json({
+    //console.log(error)
+     return res.status(401).json({
         msg:'Token no valido'
     })
 }
