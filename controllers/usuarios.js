@@ -6,7 +6,26 @@ const { validationResult } = require('express-validator')
 
 const usuariosGet=async(req, res=response) =>{
   const {limite=5,desde=0}= req.query
-  const query= {estado:true }
+  const {cedula}= req.params 
+  const query= {estado:true}
+  
+
+ console.log("cedula",cedula)
+ if(cedula){
+  const queryCedula={cedula:cedula}
+  const usuario = await Usuario.findOne(queryCedula)
+  if(usuario){
+    res.json(usuario)
+  }else{
+    res.status(404).json({
+      msg:"no se encontro el inquilino con esa cedula"
+    })
+  }
+
+  return
+  
+ }
+
 
  
    const [total, usuarios]= await Promise.all([
@@ -42,7 +61,7 @@ const usuariosGet=async(req, res=response) =>{
 
   const usuariosPut=async(req, res=response) =>{
 
-    const {id}= req.params 
+    const {id}= req.params  
 
     const {_id,password ,google,correo,...resto}= req.body
     //

@@ -11,6 +11,7 @@ const router = Router();
 
 
 router.get('/', usuariosGet)
+router.get('/:cedula', usuariosGet)
   
   router.post('/',[
     check('nombre',"el nombre es obligatorio").notEmpty(),
