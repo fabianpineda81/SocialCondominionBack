@@ -61,7 +61,8 @@ const usuariosGet=async(req, res=response) =>{
 
   const usuariosPut=async(req, res=response) =>{
 
-    const {id}= req.params  
+    const {id,cedula}= req.params  
+    
 
     const {_id,password ,google,correo,...resto}= req.body
     //
@@ -69,7 +70,14 @@ const usuariosGet=async(req, res=response) =>{
       const salt = bcryptjs.genSaltSync();
       resto.password= bcryptjs.hashSync(password,salt);
     }
-    const usuario= await Usuario.findByIdAndUpdate(id,resto);
+    let usuario ; 
+    if(cedula){
+     usuario= await Usuario.findOneAndUpdate({cedula},resto)
+    }else{
+       usuario= await Usuario.findByIdAndUpdate(id,resto);
+    }
+    
+    
 
        res.json(usuario)
   }

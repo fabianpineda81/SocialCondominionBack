@@ -26,6 +26,13 @@ const existeUsuarioPorId=async (id = '') => {
      }
  }
 
+ const existeUsuarioPorCedula=async (cedula = '') => {
+    const existeUsuario =  await usuario.findOne({cedula})
+     if (!existeUsuario) {
+         throw new Error(`no existe un usuario con esta cedula ${id} `)
+     }
+ }
+
 
 
 
@@ -33,5 +40,6 @@ const existeUsuarioPorId=async (id = '') => {
 module.exports = {
     esRolValido,
     emailExiste,
-    existeUsuarioPorId
+    existeUsuarioPorId,
+    existeUsuarioPorCedula
 }

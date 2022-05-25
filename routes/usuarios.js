@@ -1,7 +1,7 @@
 const {Router}= require('express');
 const { check } = require('express-validator');
 const { usuariosGet, usuariosPost, usuariosDelete, usuariosPut } = require('../controllers/usuarios');
-const { esRolValido, emailExiste, existeUsuarioPorId } = require('../helpers/db-validators');
+const { esRolValido, emailExiste, existeUsuarioPorId, existeUsuarioPorCedula } = require('../helpers/db-validators');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { esAdminRole, tieneRole } = require('../middlewares/validar-roles');
 const { validarCampos } = require('../middlewares/validarCampos');
@@ -29,9 +29,10 @@ router.get('/:cedula', usuariosGet)
     validarCampos
   ],usuariosPost)
   
-  router.put('/:id',[
-    check('id','no es un id valido').isMongoId(),
-    check('id').custom(existeUsuarioPorId),
+  router.put('/:cedula',[
+    //check('id','no es un id valido').isMongoId(),
+    check('cedula').notEmpty(),
+    check('cedula').custom(existeUsuarioPorCedula),
     check('rol').custom(esRolValido), 
     validarCampos
   ],usuariosPut)
