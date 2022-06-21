@@ -41,10 +41,10 @@ const usuariosGet=async(req, res=response) =>{
 
   const usuariosPost= async(req, res=response)=>{
 
-   
+    console.log("body crear usuario",req.body)
 
-    const {nombre,correo, password, rol,apto,cedula,numero}= req.body
-    const usuario= new Usuario({nombre,correo,password,rol,apto,cedula,numero});
+    const {nombre,apellido,correo, password,rol,apto,cedula,numero}= req.body
+    const usuario= new Usuario({nombre,apellido,correo,password,rol,apto,cedula,numero});
     // verificar si el correo existe 
    
 
@@ -81,6 +81,12 @@ const usuariosGet=async(req, res=response) =>{
 
        res.json(usuario)
   }
+  const usuariosPutSinCedula=(req, res=response) =>{
+     res.status(400).json({
+         msg:"debe dijitar la cedula a actualizar "
+       })
+  }
+
 
   const usuariosDelete=async (req, res=response) =>{
     const {id}= req.params
@@ -97,5 +103,6 @@ const usuariosGet=async(req, res=response) =>{
       usuariosGet,
       usuariosDelete,
       usuariosPost,
-      usuariosPut
+      usuariosPut,
+      usuariosPutSinCedula
   }

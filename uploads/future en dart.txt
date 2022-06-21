@@ -1,0 +1,20 @@
+void main (){
+  print('Antes de la peticion');
+  httpGet('https://fabian.pineda.com')
+    .then((data){
+      print(data);
+    });
+  print ('despues del programa');
+  
+}
+
+
+
+
+
+Future <String> httpGet(String url  ){
+  return Future.delayed(Duration(seconds:3),(){
+    return 'hola mundo - 3 segundos ';
+  });
+  
+}

@@ -9,9 +9,17 @@ const usuarioSchema = Schema({
 
 
     },
+    apellido:{
+        type:String,
+        required:[true, 'el apellido  es obligatorio'],
+
+
+    },
     cedula:{
         type:Number,
-        required:[true, 'la cedula es obligatoria']
+        required:[true, 'la cedula es obligatoria'],
+        unique:true
+
     },
     correo:{
         type:String,
@@ -51,6 +59,9 @@ const usuarioSchema = Schema({
         type:Number,
         required:[true,"El numero es obligatorio"]
     },
+    img:{
+        type:String
+    }
 
 
 

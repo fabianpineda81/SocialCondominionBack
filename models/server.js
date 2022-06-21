@@ -1,6 +1,7 @@
 const express = require('express')
 var cors = require('cors')
 const { dbConection } = require('../database/config')
+const fileUpload= require('express-fileupload')
 
 
 class Server{
@@ -9,8 +10,17 @@ class Server{
      constructor(){
         this.app = express()
         this.port=process.env.PORT
-        this.authPath='/api/auth'
-        this.rutaUsuarios='/api/usuarios'
+        this.paths={
+            authPath:'/api/auth',
+            rutaUsuarios:'/api/usuarios',
+            rutaCategoria:'/api/categorias',
+            productos:'/api/productos',
+            buscar:"/api/buscar",
+            uploads:"/api/uploads"
+            
+            
+        }
+
         // conectar a base de datos 
         this.conectarDB()
         // middelwares
@@ -26,14 +36,20 @@ class Server{
     }
 
     routes(){
-          this.app.use(this.rutaUsuarios,require('../routes/usuarios'))  
-          this.app.use(this.authPath,require('../routes/auth'))
+          this.app.use(this.paths.rutaUsuarios,require('../routes/usuarios'))  
+          this.app.use(this.paths.authPath,require('../routes/auth'))
+          this.app.use(this.paths.rutaCategoria,require('../routes/categorias'))
+          this.app.use(this.paths.productos,require('../routes/productos'))
+          this.app.use(this.paths.buscar,require('../routes/buscar'))
+          this.app.use(this.paths.uploads,require('../routes/uploads'))
     
     }
 
     middlewares(){
         this.app.use(cors())
         this.app.use(express.json())
+        // carag de archivos
+        this.app.use(fileUpload({ useTempFiles : true,tempFileDir : '/tmp/',createParentPath:true}));
     }
 
     listen(){

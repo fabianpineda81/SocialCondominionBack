@@ -18,7 +18,7 @@ if(!token ){
 
 
 try {
-    const {uid}= jwt.verify(token,process.env.SECRETKEY)
+    const {uid}=  jwt.verify(token,process.env.SECRETKEY)
     req.uid=uid
 
     //leer el usuario que corresponde al uid 
@@ -48,7 +48,7 @@ try {
         msg:'Token no valido'
     })
 }
-next();
+
 
 }
 

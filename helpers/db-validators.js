@@ -34,6 +34,16 @@ const existeUsuarioPorId=async (id = '') => {
  }
 
 
+ const coleccionesPermitidas=(coleccion='',coleccionesPermitidas=[])=>{
+    const incluida= coleccionesPermitidas.includes(coleccion)
+    if(!incluida){
+        throw new  Error(`La coleccion ${coleccion} no es permitidas, ${coleccionesPermitidas}`)
+    }
+
+    return true
+ }
+
+
 
 
 
@@ -41,5 +51,6 @@ module.exports = {
     esRolValido,
     emailExiste,
     existeUsuarioPorId,
-    existeUsuarioPorCedula
+    existeUsuarioPorCedula,
+    coleccionesPermitidas
 }
