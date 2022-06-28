@@ -16,7 +16,9 @@ class Server{
             rutaCategoria:'/api/categorias',
             productos:'/api/productos',
             buscar:"/api/buscar",
-            uploads:"/api/uploads"
+            uploads:"/api/uploads",
+            areaComun:"/api/areaComun",
+            reserva:"/api/reserva"
             
             
         }
@@ -42,6 +44,8 @@ class Server{
           this.app.use(this.paths.productos,require('../routes/productos'))
           this.app.use(this.paths.buscar,require('../routes/buscar'))
           this.app.use(this.paths.uploads,require('../routes/uploads'))
+          this.app.use(this.paths.areaComun,require('../routes/areaComun'))
+          this.app.use(this.paths.reserva,require('../routes/reserva'))
     
     }
 

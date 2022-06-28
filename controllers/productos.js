@@ -6,7 +6,7 @@ const usuario = require("../models/usuario");
 
 // obtener categorias - paginado - total - pupulate 
 const productosGet = async (req, res = response) => {
-    const { limite = 5, desde = 0 } = req.query
+    const { limite = 50, desde = 0 } = req.query
     const {id}=req.params
     const query={estado:true}
     console.log("id",id)
@@ -32,7 +32,7 @@ const productosGet = async (req, res = response) => {
 
     const [total, productos]= await Promise.all([
         Producto.countDocuments(query),
-        Producto.find(query).skip(desde).limit(limite).populate('categoria').populate('usuario',"nombre")
+        Producto.find(query).skip(desde).limit(limite).populate('categoria').populate('usuario')
        ])
     
         res.json({
