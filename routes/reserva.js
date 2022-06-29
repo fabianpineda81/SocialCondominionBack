@@ -32,6 +32,7 @@ router.post("/:areaComun",[
     check("areaComun","el area comun debe ser un id valido").isMongoId(),
     check('nombre','el nombre es obligatorio').notEmpty(),
     check('objeto',"el objeto es obligatorio").notEmpty(),
+    check('id','el id es obligatorio').notEmpty(),
     validarCampos
 ],crearReserva)
 // cualquiera persona con token
@@ -44,10 +45,10 @@ router.put("/:id",[
 ],reservaPut)
 
 // solo admin
-router.delete("/:nombre",[
+router.delete("/:id",[
     validarJWT,
     check("id","el id el obligatorio").notEmpty(),
-    check("id","el id tiene que ser un id valido").isMongoId(),
+    
     validarCampos
 ],reservaDelete)
 

@@ -35,6 +35,7 @@ const obtenerReservas = async (req, res = response) => {
 const crearReserva = async (req, res = response) => {
     const nombre = req.body.nombre.toUpperCase();
     const objeto = req.body.objeto;
+    const id = req.body.id;
     const {areaComun}=req.params
 
     console.log("creacion reserva",req.body)
@@ -47,6 +48,7 @@ const crearReserva = async (req, res = response) => {
  */
     // generar la data a guardar 
     const data = {
+        id,
         nombre,
         usuario: req.usuario._id,
         StringObjeto:objeto,
@@ -101,9 +103,9 @@ const reservaDelete=async(req, res=response)=>{
     const usuarioAutenticado= req.usuario
     
 
-    const Reserva = await Reserva.findByIdAndDelete(id)
+    const reserva = await Reserva.findOneAndDelete({id})
     
-    return res.json(Reserva)
+    return res.json(reserva)
 }
 
 // borrar categoria - estado false 

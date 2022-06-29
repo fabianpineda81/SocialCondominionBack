@@ -5,6 +5,10 @@ const Reserva= Schema({
             type:String,
             require:[true, 'el nombre es obligatorio']
         },
+        id:{
+            type:String,
+            require:[true, 'el id es obligatorio']
+        },
         StringObjeto:{
             type:String,
             default:true,

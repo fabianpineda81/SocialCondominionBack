@@ -12,7 +12,7 @@ const usuariosGet=async(req, res=response) =>{
 
  console.log("cedula",cedula)
  if(cedula){
-  const queryCedula={cedula:cedula}
+  const queryCedula={cedula:cedula,estado:true}
   const usuario = await Usuario.findOne(queryCedula)
   if(usuario){
     res.json(usuario)
