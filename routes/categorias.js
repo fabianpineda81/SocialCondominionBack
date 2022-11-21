@@ -26,8 +26,8 @@ router.get("/:nombre",[
 ],obtenerCategorias)
 // cualquier persona con un token
 router.post("/",[
-    validarJWT,  
-    check('nombre','el nombre es obligatorio').notEmpty(),
+    validarJWT, 
+    check('nombre','el nombre es obligatorio').notEmpty(), 
     validarCampos
 ],crearCategoria)
 // cualquiera persona con token

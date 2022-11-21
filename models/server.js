@@ -18,7 +18,10 @@ class Server{
             buscar:"/api/buscar",
             uploads:"/api/uploads",
             areaComun:"/api/areaComun",
-            reserva:"/api/reserva"
+            reserva:"/api/reserva",
+            ordenesPagos:"/api/OrdenesPagos",
+            pagos:"/api/pagos"
+
             
             
         }
@@ -46,7 +49,9 @@ class Server{
           this.app.use(this.paths.uploads,require('../routes/uploads'))
           this.app.use(this.paths.areaComun,require('../routes/areaComun'))
           this.app.use(this.paths.reserva,require('../routes/reserva'))
-    
+          this.app.use(this.paths.ordenesPagos,require('../routes/OrdenesPagos'))
+          this.app.use(this.paths.pagos,require('../routes/pagos'))
+         
     }
 
     middlewares(){
