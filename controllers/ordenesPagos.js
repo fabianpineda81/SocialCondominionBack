@@ -80,6 +80,32 @@ const buscarOrdenes = async (req, res = response) => {
     return
 
 }
+const buscarOrdenesCedula = async (req, res = response) => {
+    const { cedula } = req.params
+    const queryCedula={cedula:cedula,estado:true}
+    const usuario = await Usuario.findOne(queryCedula)
+    console.log("cedula",cedula)
+    if(!usuario){
+      return  res.status(404).json({
+            msg:"no existe un ususario con esa cedula"
+        })
+    }
+    const query = { usuario: usuario.id, estado: true }
+    
+    const ordenes = await OrdenesPagos.find(query).populate('usuario')
+    if (ordenes) {
+        res.json(ordenes)
+    } else {
+        res.status(404).json({
+            msg: "no se encontraron ordenes de pago para ese usuario"
+        })
+    }
+
+    return
+
+}
+
+
 
 // actualizar categoria 
 
@@ -96,6 +122,7 @@ const ordenesDelete=async (req, res = response) => {
 
 module.exports = {
     buscarOrdenes,
+    buscarOrdenesCedula,
     CrearOrdenesPorid,
     ordenesDelete
     

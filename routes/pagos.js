@@ -19,7 +19,8 @@ router.get("/",[
 ],buscarPagos)
 // buscar las ordenes de pagos por id, puede ser id del usuario o id del pago
 router.get("/:id",[
-    check("id","el id debe ser un id valido").isMongoId(),
+    check('id','el id debe ser un mongo id').isMongoId(),
+    validarCampos
 ],buscarPagos)
 // cualquier persona con un token
 

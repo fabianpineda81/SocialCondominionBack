@@ -8,7 +8,7 @@ const validarNombreCategoria = require('../middlewares/validar-nombre-categoria'
 const { tieneRole } = require('../middlewares/validar-roles');
 const res = require('express/lib/response');
 const { obtenerReservas, crearReserva, reservaDelete } = require('../controllers/reserva');
-const { CrearOrdenesPorid, buscarOrdenes, ordenesDelete } = require('../controllers/ordenesPagos');
+const { CrearOrdenesPorid, buscarOrdenes, ordenesDelete, buscarOrdenesCedula } = require('../controllers/ordenesPagos');
 
 const router = Router();
 /* {{url}}/ categorias/ */
@@ -23,9 +23,17 @@ const router = Router();
 }) */
 
 router.get("/:id",[
+    validarJWT,
     check("id").notEmpty(),
+    check('id','el id debe ser un mongo id').isMongoId(),
     validarCampos
 ],buscarOrdenes)
+router.get("/cedula/:cedula",[
+    validarJWT,
+    check("cedula").notEmpty(),
+    check("cedula","no es una cedula valida").isNumeric(),
+    validarCampos
+],buscarOrdenesCedula)
 // cualquier persona con un token
 router.post("/",[
     validarJWT, 
