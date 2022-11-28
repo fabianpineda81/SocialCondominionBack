@@ -19,7 +19,7 @@ class Server{
             uploads:"/api/uploads",
             areaComun:"/api/areaComun",
             reserva:"/api/reserva",
-            ordenesPagos:"/api/OrdenesPagos",
+            ordenesPagos:"/api/ordenespagos",
             pagos:"/api/pagos"
 
             
