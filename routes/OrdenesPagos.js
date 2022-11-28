@@ -23,17 +23,14 @@ const router = Router();
 }) */
 
 router.get("/:id",[
-    validarJWT,
+    //validarJWT,
     check("id").notEmpty(),
     check('id','el id debe ser un mongo id').isMongoId(),
     validarCampos
 ],buscarOrdenes)
 
 router.get("/",[
-    validarJWT,
-    check("id").notEmpty(),
-    check('id','el id debe ser un mongo id').isMongoId(),
-    validarCampos
+    //validarJWT,
 ],buscarOrdenes)
 router.get("/cedula/:cedula",[
     validarJWT,

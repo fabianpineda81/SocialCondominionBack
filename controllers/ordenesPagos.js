@@ -67,12 +67,17 @@ const buscarOrdenes = async (req, res = response) => {
     
     const { id } = req.params
     const query = { usuario: id, estado: true }
-    
-    const ordenes = await OrdenesPagos.find(query).populate('usuario')
+    let ordenes
+    if(!id){
+         ordenes = await OrdenesPagos.find().populate('usuario')
+    }else{
+        ordenes = await OrdenesPagos.find(query).populate('usuario')
+
+    }
     if (ordenes) {
         res.json(ordenes)
     } else {
-        res.status(404).json({
+       return res.status(404).json({
             msg: "no se encontraron ordenes de pago para ese usuario"
         })
     }
