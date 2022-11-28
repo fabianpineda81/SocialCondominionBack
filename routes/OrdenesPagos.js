@@ -28,6 +28,13 @@ router.get("/:id",[
     check('id','el id debe ser un mongo id').isMongoId(),
     validarCampos
 ],buscarOrdenes)
+
+router.get("/",[
+    validarJWT,
+    check("id").notEmpty(),
+    check('id','el id debe ser un mongo id').isMongoId(),
+    validarCampos
+],buscarOrdenes)
 router.get("/cedula/:cedula",[
     validarJWT,
     check("cedula").notEmpty(),
