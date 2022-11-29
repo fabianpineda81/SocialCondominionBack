@@ -69,7 +69,7 @@ const buscarOrdenes = async (req, res = response) => {
     const query = { usuario: id, estado: true }
     let ordenes
     if(!id){
-         ordenes = await OrdenesPagos.find().populate('usuario')
+         ordenes = await OrdenesPagos.find({estado:true}).populate('usuario')
     }else{
         ordenes = await OrdenesPagos.find(query).populate('usuario')
 
