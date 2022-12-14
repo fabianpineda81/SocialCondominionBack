@@ -23,7 +23,7 @@ const buscarPagos=async (req, res = response)=>{
                 pagos
             )
         }
-        let pago = await Pago.findById(pago)
+        let pago = await Pago.findById(id)
         if(pago){
             return res.json(pago)
         }

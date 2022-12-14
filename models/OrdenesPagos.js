@@ -23,7 +23,7 @@ const OrdenesPagos = Schema({
 })
 
 OrdenesPagos.methods.toJSON = function () {
-    const { __v, estado, ...data } = this.toObject();
+    const { __v, ...data } = this.toObject();
 
     return data;
 

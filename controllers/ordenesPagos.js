@@ -87,7 +87,7 @@ const buscarOrdenes = async (req, res = response) => {
 }
 const buscarOrdenesCedula = async (req, res = response) => {
     const { cedula } = req.params
-    const queryCedula={cedula:cedula,estado:true}
+    const queryCedula={cedula:cedula}
     const usuario = await Usuario.findOne(queryCedula)
     console.log("cedula",cedula)
     if(!usuario){
