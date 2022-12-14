@@ -8,7 +8,7 @@ const Usuario = require("../models/usuario");
 const  CrearOrdenesPorid = async (req, res = response) => {
     const { id } = req.params
     const { valor, descripcion } = req.body
-    const query = { _id: id, estado: true }
+    const query = { _id: id }
     
     if (id) {
         const data = {
@@ -66,10 +66,10 @@ const buscarOrdenes = async (req, res = response) => {
     
     
     const { id } = req.params
-    const query = { usuario: id, estado: true }
+    const query = { usuario: id }
     let ordenes
     if(!id){
-         ordenes = await OrdenesPagos.find({estado:true}).populate('usuario')
+         ordenes = await OrdenesPagos.find().populate('usuario')
     }else{
         ordenes = await OrdenesPagos.find(query).populate('usuario')
 
@@ -95,7 +95,7 @@ const buscarOrdenesCedula = async (req, res = response) => {
             msg:"no existe un ususario con esa cedula"
         })
     }
-    const query = { usuario: usuario.id, estado: true }
+    const query = { usuario: usuario.id}
     
     const ordenes = await OrdenesPagos.find(query).populate('usuario')
     if (ordenes) {

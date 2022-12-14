@@ -33,7 +33,7 @@ router.get("/",[
     //validarJWT,
 ],buscarOrdenes)
 router.get("/cedula/:cedula",[
-    validarJWT,
+   // validarJWT,
     check("cedula").notEmpty(),
     check("cedula","no es una cedula valida").isNumeric(),
     validarCampos
