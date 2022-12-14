@@ -51,7 +51,7 @@ const realizarPago= async(req, res = response)=>{
     }
     try {
         const payment=  await stripe.paymentIntents.create({
-            amount:ordenPago.valor*10,
+            amount:ordenPago.valor*100,
             currency:"COP",
             description:ordenPago.id,
             payment_method:stripeId,
